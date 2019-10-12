@@ -1,0 +1,143 @@
+# The version is to help determine which version this config is. Please don't modify this value.
+version: "@version@"
+
+# Print additional information in the console. Useful for figuring out errors and issues.
+debug: false
+
+# Every update configurations will be reset to the new configurations of the version.
+# This is better to have enabled as it keeps configurations up to date.
+# If the new update adds more configuration nodes they will be present.
+# We will usally tell you which configuration nodes were added.
+# The downside is that it resets the values and saves them in their own folder.
+# which you would then have to copy and paste old nodes back into.
+disable-configurations-reset: false
+
+general:
+    # If this option is true, the server will act as the game, meaning the second a player joins the game,
+    # They will join DeadByCraft.
+    bungeecord: false
+    # The max amount of new lines a user is allowed to enter in inputtable placeholders.
+    new-lines: 4
+    # When the game starts, let everyone know who the monster is.
+    announce-monster: false
+
+database:
+    # Types are MYSQL and H2.
+    type: "H2"
+    autosave: "5 minutes"
+    # Table name configuration for databases.
+    mines-table: "Mines"
+    mysql:
+        user: "root"
+        address: "localhost"
+        password: "password"
+        name: "mines-example"
+
+# Global configurations for abilities.
+abilities:
+    # Define at which experience level the players get a new ability slot.
+    # There is only a max of 5 slots. Set to -1 to disable that slot.
+    ability-slots:
+        1: 0
+        2: 5
+        3: 10
+        4: 15
+        5: 20
+
+# Game settings.
+game:
+    # Should there be blindness on start?
+    blindness-on-start: true
+    # If you allow survivors to attack the monster.
+    allow-survivors-to-attack-monster: false
+    # You might want to enable regeneration if you have the option above enabled.
+    monster-has-regeneration: false
+    # The max time a game can run.
+    game-time: "45 minutes"
+    # If there are atleast this many players in the lobby the game will start.
+    player-starts: 3
+    # Time before the game starts in the lobby.
+    # Used so the lobby can fill up at the last second.
+    lobby-start-time: "30 seconds"
+    # Disable fall damage during game time.
+    disable-fall-damage: true
+    # If only one of each character may be used in a game.
+    allow-only-one-character: false
+    # Generator settings
+    generators:
+        # Generator radius players must be within to start "fixing" stage.
+        radius: 2.5
+        # The amount of time it takes a single person to repair a generator.
+        seconds: "1 minute and 20 seconds"
+        # How many bars to progress bar should have.
+        progress-bar-amount: 50
+        symbol: "&l|"
+        uncomplete-colour: "&7"
+        # The values of the %colour% placeholder in generator messages based on the progress.
+        progress-colours:
+            0-19: "&4"
+            20-39: "&c"
+            40-59: "&e"
+            60-79: "&6"
+            80-89: "&a"
+            90-100: "&2"
+
+# All configurations relating to HolographicDisplays.
+# In order for holograms to be active, you need to install ProtocolLib and HolographicDisplays.
+holograms:
+    # Hologram that happens when a player places a toolbox.
+    toolbox:
+        use-sounds: true
+        sounds:
+            1:
+                sound: "BLOCK_ANVIL_USE"
+                volume: 0.6
+                pitch: 3
+                delay: 0
+        # The time before the hologram expires, remove this node for Kingdom to use the default expiration.
+        expiration: "3 minutes"
+        # Negative numbers work too.
+        x-offset: 0.0
+        y-offset: 0.0
+        z-offset: 0.0
+        # If there should be an item in the hologram.
+        item:
+            enabled: false
+            # If the item should be above or below the text.
+            above: false
+            material: "DIAMOND_SWORD"
+            material-meta: ""
+        lines:
+            - "&e%player%'s toolbox"
+            - "&cExpires in %expiration% seconds"
+
+# All title configurations
+titles:
+    monster:
+        enabled: true
+        title: "&c&lYou are the Monster!"
+        subtitle: "&7Kill players and hang them on the hooks"
+        fadeOut: 10
+        fadeIn: 10
+        stay: 30
+    survivor:
+        enabled: true
+        title: "&e&lYou are a Survivor!"
+        subtitle: "&7Fix all the generators to open the gates"
+        fadeOut: 10
+        fadeIn: 10
+        stay: 30
+    progress:
+        enabled: true
+        title: "&7[%colour%%progressbar%&7]"
+        subtitle: "&8&oRepairing Generator %colour%%progress%%"
+        fadeOut: 0
+        fadeIn: 0
+        stay: 5
+    gates-ready:
+        enabled: true
+        title: "&e&lGates are powered!"
+        subtitle: "&8Find a lever near gates to open the gates"
+        fadeOut: 0
+        fadeIn: 0
+        stay: 5

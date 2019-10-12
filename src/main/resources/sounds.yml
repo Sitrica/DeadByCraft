@@ -1,0 +1,154 @@
+# The version is to help determine which version this config is. Please don't modify this value.
+version: "@version@"
+
+# All sounds relating to invading.
+# Pitches range from 0-15, any number after just recycles back to 0. (Minecraft 16 decimal pitches)
+# Volumes range from 0-1 (The single decimal place is what is considered), this may change in future versions of Spigot so play with this.
+# All sounds relating to setup
+setup:
+    # When a player enters setup mode.
+    enter:
+        enabled: true
+        # The list of sounds.
+        sounds:
+            1:
+                sound: "BLOCK_NOTE_BLOCK_PLING"
+                volume: 0.7
+                pitch: 3
+                delay: 0
+            # An example of multiple sounds playing.
+            #2:
+            #    sound: "ENTITY_VILLAGER_NO"
+            #    volume: 1
+            #    pitch: 15
+            #    # Will be played 5 ticks after sound 1.)
+            #    delay: 5
+
+# Error sound effect
+error:
+    enabled: true
+    sounds:
+        1:
+            sound: "ENTITY_VILLAGER_NO"
+            volume: 1
+            pitch: 2
+            delay: 0
+
+# When a game ends
+finish:
+    # When all players leave
+    leave:
+        enabled: true
+        sounds:
+            1:
+                sound: "ENTITY_WITHER_AMBIENT"
+                volume: 1
+                pitch: 3
+                delay: 0
+
+# Called when a button is to be simulated in clicking.
+click:
+    enabled: true
+    sounds:
+        1:
+            sound: "UI_BUTTON_CLICK"
+            volume: 0.7
+            pitch: 2
+            delay: 0
+
+ability-equipped:
+    enabled: true
+    sounds:
+        1:
+            sound: "ENTITY_PLAYER_LEVELUP"
+            volume: 0.7
+            pitch: 5
+            delay: 0
+
+ability-removed:
+    enabled: true
+    sounds:
+        1:
+            sound: "UI_BUTTON_CLICK"
+            volume: 0.7
+            pitch: 2
+            delay: 0
+
+# Lobby sounds
+lobby:
+    # Sound when the player requests to be a monster.
+    select-monster:
+        enabled: true
+        sounds:
+            1:
+                sound: "ENTITY_ZOMBIE_AMBIENT"
+                volume: 0.6
+                pitch: 1
+                delay: 0
+    # Sound when the player requests to be a survivor.
+    select-survivor:
+        enabled: true
+        sounds:
+            1:
+                sound: "ENTITY_PLAYER_BURP"
+                volume: 0.6
+                pitch: 2
+                delay: 0
+
+# Generator sounds are different because they play at random times when working on the generator.
+# They also change their pitches randomly, so a sound that sounds like metal is usally a good sound.
+generators:
+    enabled: true
+    # The higher this number the less random sounds will play.
+    # The higher this sound the more sounds will play.
+    # Sounds get more the more progress, that is evident.
+    frequency: 23
+    sound-1:
+        sound: "BLOCK_ANVIL_LAND"
+        volume: 0.7
+    sound-2:
+        sound: "BLOCK_PISTON_EXTEND"
+        volume: 0.7
+    sound-3:
+        sound: "BLOCK_ANVIL_STEP"
+        volume: 0.8
+    piston:
+        enabled: true
+        sounds:
+            1:
+                sound: "BLOCK_PISTON_EXTEND"
+                volume: 0.6
+                pitch: 1
+                delay: 5
+            2:
+                sound: "BLOCK_PISTON_CONTRACT"
+                volume: 0.6
+                pitch: 1
+                delay: 15
+
+game:
+    start:
+        enabled: true
+        sounds:
+            1:
+                sound: "ENTITY_WITHER_DEATH"
+                volume: 0.4
+                pitch: 2
+                delay: 0
+    gates-ready:
+        enabled: true
+        sounds:
+            1:
+                sound: "ENTITY_ILLUSIONER_PREPARE_BLINDNESS"
+                volume: 1
+                pitch: 0
+                delay: 0
+    scare:
+        enabled: true
+        sounds:
+            1:
+                # ENTITY_GHAST_WARN and ENTITY_GHAST_HURT and ENTITY_GHAST_DEATH and ENTITY_FOX_SCREECH with pitch 0 is spoopy too.
+                sound: "AMBIENT_CAVE"
+                volume: 0.8
+                pitch: 1
+                delay: 600 #30 seconds later send this spoopy noise.

@@ -1,0 +1,22 @@
+name: DeadByCraft
+description: An asymmetrical multiplayer horror game based off DeadByDaylight!
+authors: [LimeGlass]
+main: me.limeglass.deadbycraft.DeadByCraft
+version: @version@
+api-version: 1.13
+softdepend: [PlaceholderAPI, Citizens, Citizens2, Vault, HolographicDisplays]
+depend: [ProtocolLib]
+commands:
+  deadbycraft:
+    description: View information on the DeadByCraft plugin.
+    default: true
+    aliases: [dbc, deadbycraft, deadcraft]
+    usage: /dbc
+permissions:
+  deadbycraft.*:
+    description: Gives access to all DeadByCraft commands.
+    children:
+      deadbycraft.use: true
+  deadbycraft.use:
+    description: Gives access to view the deadbycraft command.
+    default: not op

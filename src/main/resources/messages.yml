@@ -1,0 +1,167 @@
+# The version is to help determine which version this config is. Please don't modify this value.
+version: "@version@"
+
+# Information: Placeholders that are available for each message will be commented above it.
+# Default placeholders that exist on every message are %prefix% and %newline%/%nl%
+# Placeholders that if their object is found at the time of the message will be present: %player%, %sender% and %string% - sender being the user the message is sending too.
+
+# All command and general messages.
+messages:
+    # The main prefix for all chat messages.
+    prefix: "&7[&cDeadByCraft&7] &r"
+    must-be-player: "&cYou must be a player to use this command."
+    # When a player has no permissions to perform an action.
+    no-permission: "&cYou do not have permission to do that."
+    command-doesnt-exist: "&7The command you entered does not exist or is spelt incorrectly."
+    # Called when a command is entered incorrectly.
+    # This and invalid-command-correction are called at same time.
+    invalid-command: "&cInvalid Command!"
+    invalid-command-correction: "&7The valid syntax is: &c%command%&7."
+    version: "&c%version% &7<> = required [] = optional"
+
+# The setup command messages
+setup:
+    1:
+        - "&eYou have entered setup mode."
+        - "&3Type &c/dbc setup quit&3 anytime, to cancel this mine setup."
+        - "&3Enter the name of this Map into the anvil and click the newly named item."
+    2:
+        - "&eYou set the name to &l%name%"
+        - "&3Now use &e/dbc setup pos1&3 and look at a block to set position 1 of the map."
+        - "&7&oYou're tring to make a cuboid with two positions."
+    3:
+        - "&3Now use &e/dbc setup pos2&3 and look at a block to set position 2 of the map."
+        - "&7&oYou're tring to make a cuboid with two positions."
+    4:
+        - "&3Now use &e/dbc setup lobby&3 the lobby location will be at your location."
+    5:
+        - "&3Now use &e/dbc setup addspawn&3 To constantly add spawns to the map. When done type &e/dbc setup addgenerator&3 to add your target block as a location where the generator schematic will be placed. Type &e/dbc removespawn <number>&3 to remove a spawn."
+        - ""
+    6:
+        - "&3Constantly keep adding generators with &e/dbc setup addgenerator&3. Type &e/dbc removegenerator <number>&3 to remove a generator. &cType /dbc setup gate &3to get the gate selection tool."
+    7:
+        - "&3Constantly keep selecting and adding gates with &e/dbc setup addgate&3 When done type &e/dbc setup addlever&3 to add your target block as a lever."
+        - "&3Levers trigger the gates. use &e/dbc setup removelever <number>&3 to remove a lever."
+    8:
+        - "&3Constantly keep adding levers until ready. When done type &e/dbc setup finish&3 to finish."
+    9:
+        - "&3Saving blocks of arena %name%. You can use /dbc list to view the saving progress."
+    complete: "&3Setup complete for arena %name%!"
+    quit: "&cYou have quit the setup."
+    lobby: "&eYou just set the lobby's location to &l%lobby%"
+    pos1: "&eYou just set position one's location to &l%position1%"
+    pos2: "&eYou just set position two's location to &l%position2%"
+    teleport: "&eYou just set the teleport location to &l%teleport%"
+    no-spaces: "&cThe Mine's initial name in setup cannot contain spaces."
+    not-in-setup: "&cYou are currently not in a setup. Type &l/dbc setup &cto start."
+    already-exists: "&cThe name &l%name%&c is already taken by another arena."
+    spawn: "&eYou just added your current location to spawns as spawn number #%spawn%"
+    not-a-number: "&c%input% was not a valid number."
+    removed-spawn: "&cYou have removed spawn number %spawn% from the setup."
+    setup-not-completed: "&cThe setup has some unset values, make sure you have ran; addspawn, lobby, pos1, addgenerator and pos2"
+    removed-generator: "&cYou have removed generator number %generator% from the setup."
+    generator: "&eYou just set added your target block as generator number #%generator%"
+    remove-fail: "&c%input% is not an existing value in the list."
+    gate-selected-pos1: "&aPosition 1 has been set to %location%"
+    gate-selected-pos2: "&aPosition 2 has been set to %location%"
+    gate-ready: "&3Type &e/dbc setup addgate &3To add the selected gate."
+    gate-not-selected: "&cYou have not selected a gate to be opened."
+    gate-added: "&aYou have added a gate to the arena setup."
+    lever: "&eYou just added your target block location to the levers as location number #%lever%"
+    removed-spawn: "&cYou have removed lever number %lever% from the setup."
+
+arenas:
+    no-arena-found: "&cThere was no arena found with the name &l%input%&c."
+    no-running-game-found: "&cThere was no running game found with the name &l%input%&c."
+    monster: "&4The monster this game is &c&l%player%"
+    players-left: "&cAll the players have left the game, ending game now..."
+    monster-left: "&cThe monster has left the game. A new monster will be picked now."
+    generator-finished: "&eYou have just repaired a generator!"
+
+lobby:
+    waiting-actionbar: "&c&lWaiting for more players &7(&c%playercount%&8/&c%max%&7)"
+    starting-actionbar: "&a&lGame starting in &e&l%time% seconds"
+    joined: "&6%player% is ready for some grueling fun!"
+    request-monster: "&aYou have been queued to be a &c&lMonster&a."
+    request-survivor: "&aYou have been queued to be a &e&lSurvivor&a."
+    already-selected: "&cThis character has already been selected."
+    select-character: "&eYou have selected to play as character &l%character%&e."
+    no-characters: "&cThere was no characters, report this to the owner of the server."
+
+# Game finish messages
+finish:
+    # When all players leave, but the final player still gained some xp.
+    leave:
+        - "&c----------------------------------"
+        - ""
+        - "         &6All players have left."
+        - ""
+        - "        &aTotal XP gained %experience%"
+        - ""
+        - "&c----------------------------------"
+
+abilities:
+    selected: "&aYou have just selected &l%ability%&e. Now click an ability slot for it to go in."
+    equipped: "&aYou have just equipped ability &l%ability%&a to slot %slot%."
+    removed: "&eYou have just removed ability &l%ability%&e from slot %slot%."
+    additional-lore:
+        - "&eClick to select, then choose which ability slot."
+    remove-lore:
+        - "&cClick to remove this ability as equipped."
+    toolbox-placed: "&eYou have just placed a toolbox. Nearby generator repair speeds will now be faster."
+
+# All messages relating to commands.
+commands:
+    deadbycraft:
+        description: "Display the main page."
+        syntax: "/dbc"
+    admin:
+        description: "View admin commands."
+        syntax: "&c/dbc admin"
+    setup:
+        description: "Setup a new Arena."
+        syntax: "&c/dbc setup"
+    delete:
+        description: "Delete a Arena."
+        syntax: "&c/dbc delete <arena>"
+        deleted: "&cThe arena &l%input%&c has been deleted."
+    join:
+        description: "Join a Game."
+        syntax: "&6/dbc join <arena>"
+        not-an-arena: "&cThe arena &l%input%&c does not exist."
+        already-in-a-game: "&cYou are already in another game!"
+    start:
+        description: "Force start a game."
+        syntax: "&c/dbc start <arena>"
+        deleted: "&eThe game &l%input%&e has been force started."
+        started: "&eThe game has been force started by a staff member."
+        not-enough-players: "&cThe game &l%input%&c cannot be started because there needs to be atleast 2 players."
+    stop:
+        description: "Force a game to stop."
+        syntax: "&c/dbc stop <arena>"
+        deleted: "&eThe game &l%input%&e has been stopped."
+        stopped: "&cThe game has been stopped by a staff member."
+    sound:
+        description: "Test sounds from sounds.yml eg: /dbc sound game.start"
+        syntax: "&c/dbc sound <section>"
+        no-configuration-section: "&cCould not find configuration section &l%input%&c in sounds.yml"
+    list:
+        description: "List all Arena saves and if they're running."
+        syntax: "&c/dbc list"
+    leave:
+        description: "Leave a Game."
+        syntax: "&6/dbc leave"
+        not-in-an-arena: "&cYou're currently not in any game."
+    structures:
+        description: "Paste and save structures."
+        syntax: "&6/dbc structure save/paste/tool (name)"
+        no-structure: "&cCould not find a structure under the name &l%structure%&c."
+        error: "&cThere was an error attempting to save the structure. Server denied file creation."
+        position1: "&aPosition 1 has been set to %location%"
+        position2: "&aPosition 2 has been set to %location%"
+        saved: "&aStructure &l%structure% &ahas been saved!"
+        not-set: "&cYou have not selected position 1 and 2 with the '/dbc structure tool' yet"
+    setspawn:
+        description: "Set the global spawn if using Bungeecord mode."
+        syntax: "&c/dbc setspawn/spawn"
+        set: "&cYou have just set the global dbc spawn to your location."

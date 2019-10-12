@@ -1,0 +1,162 @@
+# The version is to help determine which version this config is. Please don't modify this value.
+version: "@version@"
+
+next:
+    title: "&a&lNext page"
+    material: "ARROW"
+previous:
+    title: "&c&lPrevious page"
+    material: "ARROW"
+close:
+    title: "&e&lClose menu"
+    material: "OAK_DOOR"
+structure-tool:
+    title: "&e&lStructure Selection Tool"
+    material: "DIAMOND_AXE"
+    lore:
+        - "&7Left click a block with this"
+        - "&7tool to select position 1."
+        - "&7Right click a block with this"
+        - "&7tool to select position 2."
+gate-tool:
+    title: "&b&lGate Selection Tool"
+    material: "IRON_AXE"
+    lore:
+        - "&7Left click a block with this"
+        - "&7tool to select position 1."
+        - "&7Right click a block with this"
+        - "&7tool to select position 2."
+
+# All configurations relating to inventories.
+inventories:
+    setup:
+        name-anvil:
+            title: "Type Name Here..."
+            material: "PAPER"
+            glowing: true
+    role-selector:
+        title: "&4&lRole Selector"
+        borders:
+            enabled: true
+            title: "&6"
+            material: "RED_STAINED_GLASS_PANE"
+            glowing: false
+        survivor:
+            title: "&6&lSurvivor"
+            lore:
+                - "&7Click to be added to the survivor queue."
+            material: "APPLE"
+        monster:
+            title: "&c&lMonster"
+            lore:
+                - "&7Click to be added to the monster queue."
+            material: "ZOMBIE_HEAD"
+    character-selector:
+        title: "      &4&l&nCharacter Selector"
+        monster-border:
+            enabled: true
+            title: "&6"
+            material: "RED_STAINED_GLASS_PANE"
+            glowing: false
+        survivor-border:
+            enabled: true
+            title: "&6"
+            material: "ORANGE_STAINED_GLASS_PANE"
+            glowing: false
+        monsters:
+            title: "&c&lMonsters"
+            lore:
+                - "&7Click to edit monster class loadouts."
+            material: "ZOMBIE_HEAD"
+        survivors:
+            title: "&e&lSurvivors"
+            lore:
+                - "&7Click to edit survivor class loadouts."
+            material: "APPLE"
+        help:
+            title: "&a&lHelp"
+            lore:
+                - "&7Click monsters or survivors below to"
+                - "&7change selection view."
+                - "&7Right clicks open editor"
+                - "&7Left clicks select that as your class."
+            material: "PAPER"
+        basic-border:
+            enabled: true
+            title: "&6"
+            material: "BLACK_STAINED_GLASS_PANE"
+    editor:
+        title: "       &4&l&nCharacter Editor&r"
+        border:
+            title: "&6"
+            material: "WHITE_STAINED_GLASS_PANE"
+            glowing: false
+        abilities-border:
+            title: "&6"
+            material: "BLACK_STAINED_GLASS_PANE"
+            glowing: false
+        not-unlocked:
+            title: "&c&lLocked"
+            material: "BARRIER"
+            lore:
+                - "&cYou need to be level %level% to"
+                - "&cUnlock this ability slot."
+        disabled:
+            title: "&4&lDisabled"
+            material: "RED_STAINED_GLASS_PANE"
+            lore:
+                - "&cThis ability slot is currently disabled."
+        not-used:
+            title: "&e&lEmpty"
+            material: "YELLOW_STAINED_GLASS_PANE"
+            lore:
+                - "&eThis slot is currently empty."
+                - "&7You have this ability slot unlocked."
+                - "&7Which means you're missing out on a free ability."
+                - "&7Select an ability below, then click this slot to"
+                - "&7equip that ability."
+        back:
+            title: "&6Currently Editing %character%"
+            material: "BOOKSHELF"
+            lore:
+                - "&7Click to go back to the character selector."
+        levels:
+            title: "&a&lCurrent level %level%"
+            material: "EMERALD_BLOCK"
+            lore:
+                - "&7Your current level is %level%."
+                - "&7You earn more levels by playing"
+                - "&7and doing well in games."
+        help:
+            title: "&a&lHelp"
+            material: "BOOK"
+            lore:
+                - "&7Welcome to the character abilities editor."
+                - "&7Here you can customize all your"
+                - "&7unlocked abilities. To get started,"
+                - "&7Click an ability, it will then tell you it's"
+                - "&7selected. Next click an open slot, It will be"
+                - "&7yellow glass by default. Or you can replace"
+                - "&7already in use slots. When you've completed"
+                - "&7that, the ability will be equipped and"
+                - "&7saved to that slot."
+
+lobby-items:
+    role-selector:
+        title: "&6&lRole Selector &7&o(right-click)"
+        lore:
+            - "&7Right click to open the role selector menu."
+        material: "FERMENTED_SPIDER_EYE"
+        glowing: true
+    character-selector:
+        title: "&e&lCharacter Selector &7&o(right-click)"
+        lore:
+            - "&7Right click to open the character selector menu."
+        material: "ROTTEN_FLESH"
+        glowing: true
+    map-selector:
+        title: "&c&lMap Selector &7&o(right-click)"
+        lore:
+            - "&7Right click to open the map selector menu."
+        material: "PAPER"
+        glowing: true

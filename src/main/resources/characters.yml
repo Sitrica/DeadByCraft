@@ -1,0 +1,66 @@
+# The version is to help determine which version this config is. Please don't modify this value.
+version: "@version@"
+
+additional-lore:
+    - ""
+    - "&3Right click to select this character"
+    - "&eLeft click to edit this characters skills."
+
+# All configurations relating to characters.
+characters:
+    warrior:
+        # Roles are either MONSTER or SURVIVOR.
+        role: "SURVIVOR"
+        # The title the item will be.
+        title: "&6&lWarrior"
+        # Sound when this character is equipped.
+        equip-sound:
+            enabled: true
+            sounds:
+                1:
+                    sound: "BLOCK_ANVIL_USE"
+                    volume: 1
+                    pitch: 2
+                    delay: 0
+        lore:
+            - "&6The all mighty Warrior."
+        material: "IRON_SWORD"
+    zombie:
+        role: "MONSTER"
+        title: "&c&lZombie"
+        equip-sound:
+            enabled: true
+            sounds:
+                1:
+                    sound: "ENTITY_ZOMBIE_INFECT"
+                    volume: 1
+                    pitch: 2
+                    delay: 0
+        lore:
+            - "&cThe strong undead comes to slay all."
+        material: "ROTTEN_FLESH"
+        # If the character should be given a kit include this section on any character.
+        kit:
+            # This is just an index of the item, the name of this can be anything.
+            sword:
+                title: "&c&lFlesh Slayer"
+                material: "DIAMOND_SWORD"
+                # This actually works on all item sections.
+                # Enchantments can be found here https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html
+                # Format is NAME:<NUMBER> e.g: DURABILITY:69
+                enchantments:
+                    DAMAGE_ALL: 5
+                    DURABILITY: 10
+                    # KNOCKBACK to give the victim some chance.
+                    KNOCKBACK: 1
+                # This exists on all item sections aswell.
+                # You can define attributes to be applied to the item.
+                # These attributes get applied when the player holds this item.
+                # They can be found at https://hub.spigotmc.org/javadocs/spigot/org/bukkit/attribute/Attribute.html
+                # So for example. GENERIC_MOVEMENT_SPEED: 5 will add 5 to the speed attribute.
+                # So when holding this item, it will make the player run 5 times faster.
+                attributes:
+                    # Expand the Zombie's health when holding the flesh sword.
+                    GENERIC_MAX_HEALTH: 5
+                lore:
+                    - "&7The Zombie's sword."
