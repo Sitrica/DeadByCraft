@@ -61,6 +61,8 @@ public class Game {
 
 	/**
 	 * SHOULD ONLY BE USED INTERNALLY
+	 * 
+	 * Use the GameManager joinGame method instead.
 	 */
 	public boolean addPlayer(GamePlayer player) {
 		if (players.size() >= info.getMaximumPlayers())

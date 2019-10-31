@@ -10,6 +10,7 @@ import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 
 import me.limeglass.deadbycraft.DeadByCraft;
 import me.limeglass.deadbycraft.manager.managers.ActionbarManager;
@@ -140,6 +141,13 @@ public class ArenaInfo {
 			if (!optional.isPresent())
 				return;
 			BlockInfo info = optional.get();
+			if (block.getType() != info.getMaterial())
+				block.setType(info.getMaterial());
+			if (!block.getBlockData().getAsString().equals(info.getBlockData().getAsString()))
+				block.setBlockData(info.getBlockData());
+		});
+		gates.forEach(info -> {
+			Block block = info.getLocation().getBlock();
 			if (block.getType() != info.getMaterial())
 				block.setType(info.getMaterial());
 			if (!block.getBlockData().getAsString().equals(info.getBlockData().getAsString()))
