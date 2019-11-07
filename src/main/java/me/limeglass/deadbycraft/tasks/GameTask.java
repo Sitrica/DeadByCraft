@@ -11,6 +11,7 @@ import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Firework;
@@ -83,7 +84,7 @@ public class GameTask extends BukkitRunnable {
 		// Generators Task.
 		if (game.generatorsAreComplete() && !gatesOpen) {
 			gatesOpen = true;
-			//game.getArenaInfo().getGates().forEach(info -> info.getLocation().getBlock().setType(Material.AIR));
+			game.getArenaInfo().getGates().forEach(info -> info.getLocation().getBlock().setType(Material.AIR));
 			new SoundPlayer("game.gates-ready").playTo(game.getBukkitPlayers());
 			new MessageBuilder("titles.gates-ready")
 					.toPlayers(game.getBukkitSurvivors())
@@ -132,6 +133,11 @@ public class GameTask extends BukkitRunnable {
 						.build());
 				meta.setPower(1);
 				firework.setFireworkMeta(meta);
+				new MessageBuilder("arenas.generator-complete")
+						.replace("%complete%", game.getCompletedGenerators().size())
+						.replace("%total%", game.getGenerators().size())
+						.setPlaceholderObject(game)
+						.send(game.getBukkitPlayers());
 				DeadByCraft.getInstance().getManager(ActionbarManager.class).sendActionBar(players, new MessageBuilder("arenas.generator-finished")
 						.setPlaceholderObject(game)
 						.get());

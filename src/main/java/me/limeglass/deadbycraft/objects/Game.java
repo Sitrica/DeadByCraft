@@ -29,6 +29,7 @@ public class Game {
 	private final Set<Generator> generators = new HashSet<>();
 	private final Set<GamePlayer> players = new HashSet<>();
 	private final Set<Toolbox> toolboxes = new HashSet<>();
+	private final Set<UUID> escapees = new HashSet<>();
 	private State state = State.LOBBY;
 	private GamePlayer monster;
 	private ArenaInfo info;
@@ -89,6 +90,24 @@ public class Game {
 
 	public Set<Generator> getGenerators() {
 		return generators;
+	}
+
+	public boolean addEscapee(GamePlayer escapee) {
+		return escapees.add(escapee.getUniqueId());
+	}
+
+	public boolean haveSurvivorsEscaped() {
+		return getSurvivors().size() == getEscapees().size();
+	}
+
+	public Set<GamePlayer> getEscapees() {
+		return players.stream()
+				.filter(player -> hasEscaped(player))
+				.collect(Collectors.toSet());
+	}
+
+	public boolean hasEscaped(GamePlayer survivor) {
+		return escapees.contains(survivor.getUniqueId());
 	}
 
 	public boolean isSelected(GameCharacter character) {
@@ -169,6 +188,12 @@ public class Game {
 
 	public void setArenaInfo(ArenaInfo info) {
 		this.info = info;
+	}
+
+	public Set<Generator> getCompletedGenerators() {
+		return generators.stream()
+				.filter(generator -> generator.isRunning())
+				.collect(Collectors.toSet());
 	}
 
 	public Set<GamePlayer> getSurvivors() {

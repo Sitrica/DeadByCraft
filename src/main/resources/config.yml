@@ -119,25 +119,39 @@ titles:
         subtitle: "&7Kill players and hang them on the hooks"
         fadeOut: 10
         fadeIn: 10
-        stay: 30
+        stay: 20
     survivor:
         enabled: true
         title: "&e&lYou are a Survivor!"
         subtitle: "&7Fix all the generators to open the gates"
         fadeOut: 10
         fadeIn: 10
-        stay: 30
+        stay: 20
     progress:
         enabled: true
         title: "&7[%colour%%progressbar%&7]"
-        subtitle: "&8&oRepairing Generator %colour%%progress%%"
+        subtitle: "&7&oRepairing Generator %colour%%progress%%"
         fadeOut: 0
         fadeIn: 0
-        stay: 5
+        stay: 1
     gates-ready:
         enabled: true
         title: "&e&lGates are powered!"
-        subtitle: "&8Find a lever near gates to open the gates"
+        subtitle: "&7Find a lever near gates to open the gates"
         fadeOut: 0
         fadeIn: 0
         stay: 5
+    escaped-spectate:
+        enabled: true
+        title: "&a&lYou have successfully escaped!"
+        subtitle: "&7You are now spectating a random survivor"
+        fadeOut: 2
+        fadeIn: 2
+        stay: 10
+    game-over-escapees-win:
+        enabled: true
+        title: "&e&lGame Over"
+        subtitle: "&7Survivors have won!"
+        fadeOut: 2
+        fadeIn: 2
+        stay: 10

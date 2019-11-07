@@ -47,17 +47,12 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry sourcepath="C:/Users/Sean Grover/.gradle/caches/modules-2/files-2.1/org.spigotmc/spigot-api/1.14.4-R0.1-SNAPSHOT/55c7b84cf33187504f2cefc8ff4242bd7f687d1f/spigot-api-1.14.4-R0.1-SNAPSHOT-sources.jar" kind="lib" path="C:/Users/Sean Grover/.gradle/caches/modules-2/files-2.1/org.spigotmc/spigot-api/1.14.4-R0.1-SNAPSHOT/a2003f87c9ce103b76acb28c5ae6bf65469e863c/spigot-api-1.14.4-R0.1-SNAPSHOT.jar">
+	<classpathentry sourcepath="C:/Users/Sean Grover/.gradle/caches/modules-2/files-2.1/org.spigotmc/spigot-api/1.14.4-R0.1-SNAPSHOT/c47114bfff68055b6c6f5a261a08216ee7843b63/spigot-api-1.14.4-R0.1-SNAPSHOT-sources.jar" kind="lib" path="C:/Users/Sean Grover/.gradle/caches/modules-2/files-2.1/org.spigotmc/spigot-api/1.14.4-R0.1-SNAPSHOT/50f8305ba4a59b1837ae8371a278427b39dfa1c9/spigot-api-1.14.4-R0.1-SNAPSHOT.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Sean Grover/.gradle/caches/modules-2/files-2.1/com.comphenix.protocol/ProtocolLib/4.4.0/895951e4cad84d9417d686224f17170af47d8c91/ProtocolLib-4.4.0.jar">
-		<attributes>
-			<attribute name="gradle_used_by_scope" value="main,test"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Sean Grover/.gradle/caches/modules-2/files-2.1/com.sk89q/worldedit/7.0.0/3ea2ef997d86aa9160cb6503c7b3c6f2fc3ab9d3/worldedit-7.0.0.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>

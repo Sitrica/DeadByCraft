@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -141,7 +142,11 @@ public class GameManager extends Manager {
 		if (!optional.isPresent())
 			return;
 		Game game = optional.get();
-		gamePlayer.getPlayer().ifPresent(player -> player.teleport(gamePlayer.getJoinLocation()));
+		gamePlayer.getPlayer().ifPresent(player -> {
+			player.setSpectatorTarget(null);
+			player.teleport(gamePlayer.getJoinLocation());
+			player.setGameMode(GameMode.SURVIVAL);
+		});
 		PlayerLeaveGameEvent event = new PlayerLeaveGameEvent(game, gamePlayer);
 		Bukkit.getPluginManager().callEvent(event);
 		game.removePlayer(gamePlayer);
@@ -199,12 +204,13 @@ public class GameManager extends Manager {
 		Iterator<GamePlayer> iterator = players.iterator();
 		while (iterator.hasNext()) {
 			GamePlayer gamePlayer = iterator.next();
-			Optional<Player> player = gamePlayer.getPlayer();
-			if (!player.isPresent())
-				continue;
-			player.get().teleport(gamePlayer.getJoinLocation());
 			iterator.remove();
 			game.removePlayer(gamePlayer);
+			gamePlayer.getPlayer().ifPresent(player -> {
+				player.setSpectatorTarget(null);
+				player.teleport(gamePlayer.getJoinLocation());
+				player.setGameMode(GameMode.SURVIVAL);
+			});
 		}
 		lobbies.remove(game);
 		games.remove(game);

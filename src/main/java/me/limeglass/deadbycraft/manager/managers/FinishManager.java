@@ -11,6 +11,7 @@ import me.limeglass.deadbycraft.objects.Game;
 import me.limeglass.deadbycraft.objects.Game.State;
 import me.limeglass.deadbycraft.objects.GamePlayer;
 import me.limeglass.deadbycraft.utils.ListMessageBuilder;
+import me.limeglass.deadbycraft.utils.MessageBuilder;
 import me.limeglass.deadbycraft.utils.SoundPlayer;
 
 public class FinishManager extends Manager {
@@ -29,6 +30,18 @@ public class FinishManager extends Manager {
 		GameManager gameManager = instance.getManager(GameManager.class);
 		switch (reason) {
 			case ESCAPE:
+				new MessageBuilder("game-over-escapees-win")
+						.fromConfiguration(instance.getConfig())
+						.setPlaceholderObject(game)
+						.send(game.getBukkitPlayers());
+				for (GamePlayer player : game.getPlayers()) {
+					Optional<Player> bukkit = player.getPlayer();
+					if (!bukkit.isPresent())
+						continue;
+					long experience = game.getExperience(player);
+					player.addExperience(experience);
+					new SoundPlayer("finish.escapees-win").playTo(bukkit.get());
+				}
 				break;
 			case LEAVE:
 				for (GamePlayer player : game.getPlayers()) {

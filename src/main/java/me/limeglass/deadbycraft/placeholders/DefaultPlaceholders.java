@@ -63,6 +63,12 @@ public class DefaultPlaceholders {
 				return game.getArenaInfo().getMinimumPlayers() + "";
 			}
 		});
+		Placeholders.registerPlaceholder(new Placeholder<Game>("%escapees%") {
+			@Override
+			public String replace(Game game) {
+				return game.getEscapees().size() + "";
+			}
+		});
 		Placeholders.registerPlaceholder(new Placeholder<Game>("%max%") {
 			@Override
 			public String replace(Game game) {

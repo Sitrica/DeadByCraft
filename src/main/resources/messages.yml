@@ -77,6 +77,8 @@ arenas:
     players-left: "&cAll the players have left the game, ending game now..."
     monster-left: "&cThe monster has left the game. A new monster will be picked now."
     generator-finished: "&eYou have just repaired a generator!"
+    generator-complete: "&eA generator has been repaired! &6&l%complete%&7/&6&l%total% &egenerators so far!"
+    player-escaped: "&e&l%player% has successfully escaped! &6&l%escapees%&7/&6&l%total% &e&lescapees!"
 
 lobby:
     waiting-actionbar: "&c&lWaiting for more players &7(&c%playercount%&8/&c%max%&7)"

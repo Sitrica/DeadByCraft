@@ -45,6 +45,15 @@ finish:
                 volume: 1
                 pitch: 3
                 delay: 0
+    # When survivors win, one or more have escaped.
+    escapees-win:
+        enabled: true
+        sounds:
+            1:
+                sound: "ENTITY_PLAYER_LEVELUP"
+                volume: 1
+                pitch: 0
+                delay: 0
 
 # Called when a button is to be simulated in clicking.
 click:

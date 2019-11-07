@@ -2,6 +2,8 @@ package me.limeglass.deadbycraft.listener;
 
 import java.util.Optional;
 
+import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -18,13 +20,19 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import me.limeglass.deadbycraft.DeadByCraft;
+import me.limeglass.deadbycraft.manager.managers.FinishManager;
+import me.limeglass.deadbycraft.manager.managers.FinishManager.FinishReason;
 import me.limeglass.deadbycraft.manager.managers.GameManager;
 import me.limeglass.deadbycraft.manager.managers.PlayerManager;
 import me.limeglass.deadbycraft.objects.Game;
 import me.limeglass.deadbycraft.objects.GamePlayer;
+import me.limeglass.deadbycraft.utils.MessageBuilder;
 import me.limeglass.deadbycraft.objects.Game.State;
 
 public class EventListener implements Listener {
@@ -58,6 +66,70 @@ public class EventListener implements Listener {
 			event.setCancelled(true);
 	}
 
+	/**
+	 * Check if the player walks into a gate.
+	 */
+	@EventHandler(ignoreCancelled = true)
+	public void onPlayerMove(PlayerMoveEvent event) {
+		Player player = event.getPlayer();
+		GamePlayer gamePlayer = playerManager.getGamePlayer(player);
+		Optional<Game> optional = gamePlayer.getCurrentGame();
+		if (!optional.isPresent())
+			return;
+		Game game = optional.get();
+		if (game.getState() != State.GAME)
+			return;
+		if (!game.generatorsAreComplete())
+			return;
+		Location location = player.getLocation();
+		if (!game.getArenaInfo().getGates().stream().anyMatch(info -> info.getLocation().distance(location) < 1))
+			return;
+		Optional<GamePlayer> monster = game.getMonster();
+		if (!monster.isPresent())
+			return;
+		if (monster.get().equals(gamePlayer))
+			return;
+		new MessageBuilder("arenas.player-escaped")
+				.replace("%total%", game.getSurvivors().size())
+				.replace("%player%", player.getName())
+				.setPlaceholderObject(game)
+				.send(game.getBukkitPlayers());
+		game.addEscapee(gamePlayer);
+		player.setGameMode(GameMode.SPECTATOR);
+		Optional<GamePlayer> randomSurvivor = game.getSurvivors().stream()
+				.filter(survivor -> !survivor.equals(gamePlayer))
+				.filter(survivor -> !game.hasEscaped(survivor))
+				.findAny();
+		DeadByCraft instance = DeadByCraft.getInstance();
+		new MessageBuilder("titles.escaped-spectate")
+				.fromConfiguration(instance.getConfig())
+				.setPlaceholderObject(game)
+				.send(game.getBukkitPlayers());
+		if (!randomSurvivor.isPresent() || game.haveSurvivorsEscaped()) {
+			instance.getManager(FinishManager.class).finishGame(game, FinishReason.ESCAPE);
+			return;
+		}
+		player.setSpectatorTarget(randomSurvivor.get().getPlayer().get());
+	}
+
+	/**
+	 * Stop spectators from using the vanilla teleport.
+	 */
+	@EventHandler(ignoreCancelled = true)
+	public void onSpectatorTeleport(PlayerTeleportEvent event) {
+		if (event.getCause() != TeleportCause.SPECTATE)
+			return;
+		Player player = event.getPlayer();
+		GamePlayer gamePlayer = playerManager.getGamePlayer(player);
+		Optional<Game> optional = gamePlayer.getCurrentGame();
+		if (!optional.isPresent())
+			return;
+		Game game = optional.get();
+		if (game.getState() != State.GAME)
+			return;
+		event.setCancelled(true);
+	}
+
 	@EventHandler(ignoreCancelled = true)
 	public void onDamage(EntityDamageEvent event) {
 		if (event.getEntityType() != EntityType.PLAYER)
@@ -87,7 +159,7 @@ public class EventListener implements Listener {
 				return;
 			Optional<GamePlayer> monster = game.getMonster();
 			if (monster.isPresent()) {
-				if (monster.get().equals(gameAttacker))
+				if (monster.get().getUniqueId().equals(gameAttacker.getUniqueId()))
 					return;
 				if (DeadByCraft.getInstance().getConfig().getBoolean("game.allow-survivors-to-attack-monster", false)) {
 					if (monster.get().equals(victim))
