@@ -1,4 +1,5 @@
 import org.apache.tools.ant.filters.ReplaceTokens
+apply plugin: 'maven-publish'
 apply plugin: 'java-library'
 apply plugin: 'eclipse'
 
@@ -56,7 +57,7 @@ repositories {
 		url 'https://maven.pkg.github.com/Sitrica/GlowingAPI/'
 		credentials {
 			username = "Sitrica"
-			password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_PACKAGES_KEY") ?: '{{secrets.GITHUB_TOKEN}}'
+			password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_PACKAGES_KEY")
 		}
 	}
 
@@ -102,6 +103,28 @@ dependencies {
 
 configurations {
 	runtime.exclude group: 'org.bstats', module: 'bstats-bukkit-lite'
+}
+
+
+publishing {
+	repositories {
+		maven {
+			name = project.name
+			url = uri("https://maven.pkg.github.com/Sitrica/" + project.name)
+			credentials {
+				username = 'Sitrica'
+				password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_PACKAGES_KEY")
+			}
+		}
+	}
+	publications {
+		gpr(MavenPublication) {
+			version = project.property("version")
+			groupId = 'com.sitrica'
+			artifactId = project.name
+			from(components.java)
+		}
+	}
 }
 
 processResources {
