@@ -38,7 +38,7 @@ setup:
         - "&3Now use &e/dbc setup addspawn&3 To constantly add spawns to the map. When done type &e/dbc setup addgenerator&3 to add your target block as a location where the generator schematic will be placed. Type &e/dbc removespawn <number>&3 to remove a spawn."
         - ""
     6:
-        - "&3Constantly keep adding generators with &e/dbc setup addgenerator&3. Type &e/dbc removegenerator <number>&3 to remove a generator. &cType /dbc setup gate &3to get the gate selection tool."
+        - "&3Constantly keep adding generators with &e/dbc setup addgenerator&3. Type &e/dbc removegenerator <number>&3 to remove a generator. &eType /dbc setup gate &3to get the gate selection tool."
     7:
         - "&3Constantly keep selecting and adding gates with &e/dbc setup addgate&3 When done type &e/dbc setup addlever&3 to add your target block as a lever."
         - "&3Levers trigger the gates. use &e/dbc setup removelever <number>&3 to remove a lever."

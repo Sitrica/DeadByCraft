@@ -143,7 +143,8 @@ public class GameManager extends Manager {
 			return;
 		Game game = optional.get();
 		gamePlayer.getPlayer().ifPresent(player -> {
-			player.setSpectatorTarget(null);
+			if (player.getGameMode() == GameMode.SPECTATOR)
+				player.setSpectatorTarget(null);
 			player.teleport(gamePlayer.getJoinLocation());
 			player.setGameMode(GameMode.SURVIVAL);
 		});
@@ -207,7 +208,8 @@ public class GameManager extends Manager {
 			iterator.remove();
 			game.removePlayer(gamePlayer);
 			gamePlayer.getPlayer().ifPresent(player -> {
-				player.setSpectatorTarget(null);
+				if (player.getGameMode() == GameMode.SPECTATOR)
+					player.setSpectatorTarget(null);
 				player.teleport(gamePlayer.getJoinLocation());
 				player.setGameMode(GameMode.SURVIVAL);
 			});
