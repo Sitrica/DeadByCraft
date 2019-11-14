@@ -14,13 +14,14 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
+import com.sitrica.glowing.GlowingAPI;
+
 import me.limeglass.deadbycraft.DeadByCraft;
 import me.limeglass.deadbycraft.manager.managers.CharacterManager.AbilityConfiguration;
 import me.limeglass.deadbycraft.objects.Game;
 import me.limeglass.deadbycraft.objects.Game.Role;
 import me.limeglass.deadbycraft.objects.GamePlayer;
 import me.limeglass.deadbycraft.utils.IntervalUtils;
-import me.limeglass.glowing.GlowingAPI;
 
 public class Awareness extends Ability {
 

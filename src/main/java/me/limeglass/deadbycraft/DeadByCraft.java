@@ -14,6 +14,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.sitrica.glowing.GlowingAPI;
+
 import fr.minuskube.inv.InventoryManager;
 import me.limeglass.deadbycraft.command.CommandHandler;
 import me.limeglass.deadbycraft.manager.ExternalManager;
@@ -21,7 +23,6 @@ import me.limeglass.deadbycraft.manager.Manager;
 import me.limeglass.deadbycraft.manager.ManagerHandler;
 import me.limeglass.deadbycraft.manager.managers.GameManager;
 import me.limeglass.deadbycraft.utils.Formatting;
-import me.limeglass.glowing.GlowingAPI;
 
 public class DeadByCraft extends JavaPlugin {
 

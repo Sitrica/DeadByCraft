@@ -1,0 +1,122 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+apply plugin: 'java-library'
+apply plugin: 'eclipse'
+
+jar.archiveName = project.name + '.jar'
+
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+repositories {
+	mavenCentral()
+
+	// Spigot
+	maven {
+		url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+	}
+
+	// Bungeecord
+	maven {
+		url "https://oss.sonatype.org/content/repositories/snapshots/"
+	}
+
+	// HolographicDisplays
+	maven {
+		url 'https://ci.filoghost.me/plugin/repository/everything/'
+	}
+
+	// ProtocolLib
+	maven {
+		url "http://repo.dmulloy2.net/nexus/repository/public"
+	}
+
+	// AnvilGUI
+	maven {
+		url "https://nexus.wesjd.net/repository/thirdparty/"
+	}
+
+	// Songoda
+	maven {
+		url "http://repo.songoda.com/artifactory/private/"
+	}
+
+	// EffectLib
+	maven {
+		url 'http://maven.elmakers.com/repository/'
+	}
+
+	// Citizens
+	maven {
+		url "http://repo.citizensnpcs.co/"
+	}
+
+	maven {
+		url 'https://maven.pkg.github.com/Sitrica/GlowingAPI/'
+		credentials {
+			username = "Sitrica"
+			password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_PACKAGES_KEY")
+		}
+	}
+
+}
+
+dependencies {
+
+	// HolographicDisplays
+	implementation (group: 'com.gmail.filoghost.holographicdisplays', name: 'holographicdisplays-plugin', version: '2.3.2') {
+		exclude group: 'org.bstats', module: 'bstats-bukkit-lite'
+	}
+
+	// Nullable annotation
+	implementation (group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.annotation', version: '2.2.300')
+
+	// Citizens
+	implementation (group: 'net.citizensnpcs', name: 'citizensapi', version: '2.0.24-SNAPSHOT')
+
+	// Spigot
+	implementation (group: 'org.spigotmc', name: 'spigot-api', version: '1.14.4-R0.1-SNAPSHOT')
+
+	// ProtocolLib
+	implementation (group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.4.0");
+
+	// Vault
+	implementation (group: 'net.milkbowl', name: 'vault', version: '1.7.1')
+
+	// AnvilGUI
+	shade (group: 'net.wesjd', name: 'anvilgui', version: '1.2.1-SNAPSHOT')
+
+	// Smart-Invs
+	shade (group: 'fr.minuskube.inv', name: 'smart-invs', version: '1.2.7')
+
+	// EffectLib
+	shade (group: 'de.slikey', name: 'EffectLib', version: '6.2-SNAPSHOT')
+
+	shade (group: 'com.sitrica', name: 'GlowingAPI', version: '1.0.0')
+
+	// H2 Database
+	shade (group: 'com.h2database', name: 'h2', version: '1.4.199')
+
+}
+
+configurations {
+	runtime.exclude group: 'org.bstats', module: 'bstats-bukkit-lite'
+}
+
+processResources {
+	from (sourceSets.main.resources.srcDirs) {
+		filter ReplaceTokens, tokens: ["version": project.property("version")]
+		include '**/*.yml'
+	}
+}
+
+jar {
+	configurations.shade.each { dep ->
+		from (project.zipTree(dep)) {
+			exclude '**/*.php'
+			exclude '**/*.yml'
+			exclude 'META-INF', 'META-INF/**'
+		}
+	}
+}
