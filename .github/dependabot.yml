@@ -1,0 +1,14 @@
+version: 2
+updates:
+- package-ecosystem: gradle
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: net.wesjd:anvilgui
+    versions:
+    - 1.4.0-SNAPSHOT
+  - dependency-name: com.comphenix.protocol:ProtocolLib
+    versions:
+    - 4.5.1
